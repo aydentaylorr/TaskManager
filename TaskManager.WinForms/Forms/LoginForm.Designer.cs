@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             pnlCenter = new Panel();
-            lblTitle = new Label();
-            txtEmail = new TextBox();
-            txtPassword = new TextBox();
-            lblEmail = new Label();
-            lblPassword = new Label();
-            btnLogin = new Button();
             btnRegister = new Button();
+            btnLogin = new Button();
+            lblPassword = new Label();
+            lblEmail = new Label();
+            txtPassword = new TextBox();
+            txtEmail = new TextBox();
+            lblTitle = new Label();
             pnlCenter.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,39 +55,25 @@
             pnlCenter.Size = new Size(350, 300);
             pnlCenter.TabIndex = 0;
             // 
-            // lblTitle
+            // btnRegister
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(122, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(104, 45);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Login";
+            btnRegister.Location = new Point(190, 222);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(112, 34);
+            btnRegister.TabIndex = 6;
+            btnRegister.Text = "Register";
+            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
-            // txtEmail
+            // btnLogin
             // 
-            txtEmail.Location = new Point(15, 100);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(320, 31);
-            txtEmail.TabIndex = 1;
-            // 
-            // txtPassword
-            // 
-            txtPassword.Location = new Point(15, 173);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(320, 31);
-            txtPassword.TabIndex = 2;
-            txtPassword.UseSystemPasswordChar = true;
-            // 
-            // lblEmail
-            // 
-            lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(15, 72);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(54, 25);
-            lblEmail.TabIndex = 3;
-            lblEmail.Text = "Email";
+            btnLogin.Location = new Point(55, 222);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(112, 34);
+            btnLogin.TabIndex = 5;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // lblPassword
             // 
@@ -98,23 +84,39 @@
             lblPassword.TabIndex = 4;
             lblPassword.Text = "Password";
             // 
-            // btnLogin
+            // lblEmail
             // 
-            btnLogin.Location = new Point(55, 222);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(112, 34);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = true;
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(15, 72);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(54, 25);
+            lblEmail.TabIndex = 3;
+            lblEmail.Text = "Email";
             // 
-            // btnRegister
+            // txtPassword
             // 
-            btnRegister.Location = new Point(190, 222);
-            btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(112, 34);
-            btnRegister.TabIndex = 6;
-            btnRegister.Text = "Register";
-            btnRegister.UseVisualStyleBackColor = true;
+            txtPassword.Location = new Point(15, 173);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(320, 31);
+            txtPassword.TabIndex = 2;
+            txtPassword.UseSystemPasswordChar = true;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(15, 100);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(320, 31);
+            txtEmail.TabIndex = 1;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(122, 20);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(104, 45);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Login";
             // 
             // LoginForm
             // 
