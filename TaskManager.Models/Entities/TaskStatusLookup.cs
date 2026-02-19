@@ -1,6 +1,6 @@
 ﻿namespace TaskManager.Models.Entities
 {
-    public class TaskStatus
+    public class TaskStatusLookup
     {
         public int StatusId { get; set; }
         public string StatusName { get; set; }

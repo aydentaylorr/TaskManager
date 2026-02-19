@@ -1,18 +1,13 @@
-﻿namespace TaskManager.Models.Entities
+﻿namespace TaskManager.Models.DTOs
 {
-    public class TaskItem
+    public class CreateTaskDto
     {
-        public Guid TaskId { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int StatusId { get; set; }
-        public TaskStatusLookup Status { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        // Owner
         public Guid UserId { get; set; }
-        public User User { get; set; }
     }
 }
