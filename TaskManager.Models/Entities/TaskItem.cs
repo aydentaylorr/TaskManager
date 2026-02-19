@@ -8,7 +8,11 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int StatusId { get; set; }
-        public int UserId { get; set; }
+        public TaskStatus Status { get; set; }
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        // Owner
+        public Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }
