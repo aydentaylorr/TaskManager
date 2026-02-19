@@ -1,17 +1,14 @@
-﻿using System;
-using System.Windows.Forms;
-using TaskManager.Models.DTOs;
+﻿using TaskManager.Models.DTOs;
 using TaskManager.WinForms.Services;
 
 namespace TaskManager.WinForms.Forms
 {
     public partial class RegisterForm : Form
     {
-        private readonly AuthApiService _authService;
+        private readonly AuthApiService _authService = new AuthApiService();
         public RegisterForm()
         {
             InitializeComponent();
-            _authService = new AuthApiService();
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
