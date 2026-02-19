@@ -33,7 +33,7 @@ namespace TaskManager.WinForms
             {
                 MessageBox.Show("Login successful!");
 
-                MainForm main = new MainForm();
+                MainForm main = new MainForm(userId.Value);
                 main.Show();
 
                 this.Hide();
