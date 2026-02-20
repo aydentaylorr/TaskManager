@@ -108,7 +108,6 @@
             // 
             // cmbCategory
             // 
-            cmbCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCategory.FormattingEnabled = true;
             cmbCategory.Location = new Point(210, 216);
             cmbCategory.Name = "cmbCategory";
@@ -213,6 +212,7 @@
             Controls.Add(pnlTop);
             Name = "AddTaskForm";
             Text = "AddTaskForm";
+            Load += AddTaskForm_Load;
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             ResumeLayout(false);

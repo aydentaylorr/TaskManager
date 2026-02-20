@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
-            lblUser = new Label();
             btnRefresh = new Button();
             btnAddTask = new Button();
             splitMain = new SplitContainer();
@@ -67,7 +66,6 @@
             // 
             // panelTop
             // 
-            panelTop.Controls.Add(lblUser);
             panelTop.Controls.Add(btnRefresh);
             panelTop.Controls.Add(btnAddTask);
             panelTop.Dock = DockStyle.Top;
@@ -75,16 +73,6 @@
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1021, 115);
             panelTop.TabIndex = 0;
-            // 
-            // lblUser
-            // 
-            lblUser.AutoSize = true;
-            lblUser.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUser.Location = new Point(889, 33);
-            lblUser.Name = "lblUser";
-            lblUser.Size = new Size(87, 45);
-            lblUser.TabIndex = 2;
-            lblUser.Text = "User";
             // 
             // btnRefresh
             // 
@@ -358,7 +346,6 @@
             Text = "MainForm";
             Load += MainForm_Load;
             panelTop.ResumeLayout(false);
-            panelTop.PerformLayout();
             splitMain.Panel1.ResumeLayout(false);
             splitMain.Panel2.ResumeLayout(false);
             splitMain.Panel2.PerformLayout();
@@ -375,7 +362,6 @@
         private Panel panelTop;
         private Button btnRefresh;
         private Button btnAddTask;
-        private Label lblUser;
         private SplitContainer splitMain;
         private DataGridView dgvTasks;
         private DataGridViewTextBoxColumn colTaskId;

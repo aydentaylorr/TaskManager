@@ -8,29 +8,51 @@ namespace TaskManager.WinForms.Forms
         private readonly TaskApiService _taskApiService = new TaskApiService();
         private Guid _loggedInUserId;
         private Guid _selectedTaskId;
+        private TaskListDto _selectedTask;
+
         public MainForm(Guid userId)
         {
             InitializeComponent();
             _loggedInUserId = userId;
         }
 
-        private async Task LoadTasks()
+        public async Task LoadTasks()
         {
             var tasks = await _taskApiService.GetUserTasks(_loggedInUserId);
+
             dgvTasks.Rows.Clear();
+
             foreach (var task in tasks)
             {
-                dgvTasks.Rows.Add(
+                int rowIndex = dgvTasks.Rows.Add(
                     task.TaskId,
                     task.Title,
                     task.Category,
                     task.Status
                 );
+
+                dgvTasks.Rows[rowIndex].Tag = task;
             }
         }
 
+        private async Task LoadLookups()
+        {
+            var categories = await _taskApiService.GetCategories(_loggedInUserId);
+            var statuses = await _taskApiService.GetStatuses();
+
+            cmbCategory.DataSource = categories;
+            cmbCategory.DisplayMember = "CategoryName";
+            cmbCategory.ValueMember = "CategoryId";
+
+            cmbStatus.DataSource = statuses;
+            cmbStatus.DisplayMember = "StatusName";
+            cmbStatus.ValueMember = "StatusId";
+        }
+
+
         private async void MainForm_Load(object sender, EventArgs e)
         {
+            await LoadLookups();
             await LoadTasks();
         }
 
@@ -38,11 +60,22 @@ namespace TaskManager.WinForms.Forms
         {
             if (dgvTasks.CurrentRow == null) return;
 
-            _selectedTaskId =
-                Guid.Parse(dgvTasks.CurrentRow.Cells["colTaskId"].Value.ToString());
+            _selectedTask =
+                dgvTasks.CurrentRow.Tag as TaskListDto;
 
-            txtTitle.Text =
-                dgvTasks.CurrentRow.Cells["colTitle"].Value.ToString();
+            if (_selectedTask == null)
+                return;
+
+            _selectedTaskId = _selectedTask.TaskId;
+
+            txtTitle.Text = _selectedTask.Title;
+            txtDescription.Text = _selectedTask.Description;
+
+            cmbCategory.SelectedValue = _selectedTask.CategoryId;
+            cmbStatus.SelectedValue = _selectedTask.StatusId;
+
+            dtStart.Value = _selectedTask.StartDate;
+            dtEnd.Value = _selectedTask.EndDate;
         }
 
         private async void btnDelete_Click(object sender, EventArgs e)
@@ -56,6 +89,7 @@ namespace TaskManager.WinForms.Forms
         {
             var dto = new UpdateTaskDto
             {
+                TaskId = _selectedTaskId,
                 Title = txtTitle.Text,
                 Description = txtDescription.Text,
                 StartDate = dtStart.Value,

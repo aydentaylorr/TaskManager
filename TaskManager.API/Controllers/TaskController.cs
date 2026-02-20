@@ -29,9 +29,13 @@ namespace TaskManager.API.Controllers
                 {
                     TaskId = t.TaskId,
                     Title = t.Title,
+                    CategoryId = t.CategoryId,
+                    StatusId = t.StatusId,
                     Category = t.Category.CategoryName,
                     Status = t.Status.StatusName,
-                    Description = t.Description
+                    Description = t.Description,
+                    StartDate = t.StartDate,
+                    EndDate = t.EndDate,
                 })
                 .ToListAsync();
 

@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Json;
+using System.Net.Http.Json;
 using TaskManager.Models.DTOs;
+using TaskManager.Models.Entities;
 
 namespace TaskManager.WinForms.Services
 {
@@ -38,5 +40,39 @@ namespace TaskManager.WinForms.Services
             var response = await _httpClient.DeleteAsync($"api/task/{id}");
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<List<TaskStatusLookup>> GetStatuses()
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<TaskStatusLookup>>(
+                "api/taskstatus");
+
+            return response ?? new List<TaskStatusLookup>();
+        }
+
+        public async Task<List<Category>> GetCategories(Guid userId)
+        {
+            var response = await _httpClient.GetFromJsonAsync<List<Category>>(
+                $"api/categories/user/{userId}");
+
+            return response ?? new List<Category>();
+        }
+
+        public async Task<Category> CreateCategory(string name, Guid userId)
+        {
+            var category = new CreateCategoryDto
+            {
+                CategoryName = name,
+                UserId = userId
+            };
+
+            var response = await _httpClient.PostAsJsonAsync(
+                "api/categories",
+                category);
+
+            response.EnsureSuccessStatusCode();
+
+            return await response.Content.ReadFromJsonAsync<Category>();
+        }
+
     }
 }

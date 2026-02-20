@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using TaskManager.Models.DTOs;
+using TaskManager.Models.Entities;
 using TaskManager.WinForms.Services;
 
 namespace TaskManager.WinForms.Forms
@@ -24,6 +25,22 @@ namespace TaskManager.WinForms.Forms
 
         private async void btnAddTask_Click(object sender, EventArgs e)
         {
+            int categoryId;
+
+            if (cmbCategory.SelectedItem is Category selectedCategory)
+            {
+                categoryId = selectedCategory.CategoryId;
+            }
+            else
+            {
+                var newCategory =
+                    await _taskApiService.CreateCategory(
+                        cmbCategory.Text,
+                        _userId);
+
+                categoryId = newCategory.CategoryId;
+            }
+
             var dto = new CreateTaskDto
             {
                 Title = txtTitle.Text,
@@ -31,7 +48,7 @@ namespace TaskManager.WinForms.Forms
                 StartDate = dtStart.Value,
                 EndDate = dtEnd.Value,
                 StatusId = (int)cmbStatus.SelectedValue,
-                CategoryId = (int)cmbCategory.SelectedValue,
+                CategoryId = categoryId,
                 UserId = _userId
             };
 
@@ -40,6 +57,7 @@ namespace TaskManager.WinForms.Forms
             if (success)
             {
                 MessageBox.Show("Task added!");
+                await _mainForm.LoadTasks();
                 this.Close();
             }
         }
@@ -48,6 +66,25 @@ namespace TaskManager.WinForms.Forms
         {
             _mainForm.Show();
             this.Close();
+        }
+
+        private async Task LoadLookups()
+        {
+            var categories = await _taskApiService.GetCategories(_userId);
+            var statuses = await _taskApiService.GetStatuses();
+
+            cmbCategory.DataSource = categories;
+            cmbCategory.DisplayMember = "CategoryName";
+            cmbCategory.ValueMember = "CategoryId";
+
+            cmbStatus.DataSource = statuses;
+            cmbStatus.DisplayMember = "StatusName";
+            cmbStatus.ValueMember = "StatusId";
+        }
+
+        private async void AddTaskForm_Load(object sender, EventArgs e)
+        {
+            await LoadLookups();
         }
     }
 }
