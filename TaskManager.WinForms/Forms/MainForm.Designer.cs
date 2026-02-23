@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panelTop = new Panel();
-            btnRefresh = new Button();
             btnAddTask = new Button();
             splitMain = new SplitContainer();
             panel1 = new Panel();
@@ -66,22 +65,12 @@
             // 
             // panelTop
             // 
-            panelTop.Controls.Add(btnRefresh);
             panelTop.Controls.Add(btnAddTask);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1021, 115);
             panelTop.TabIndex = 0;
-            // 
-            // btnRefresh
-            // 
-            btnRefresh.Location = new Point(173, 58);
-            btnRefresh.Name = "btnRefresh";
-            btnRefresh.Size = new Size(112, 34);
-            btnRefresh.TabIndex = 1;
-            btnRefresh.Text = "Refresh";
-            btnRefresh.UseVisualStyleBackColor = true;
             // 
             // btnAddTask
             // 
@@ -360,7 +349,6 @@
         #endregion
 
         private Panel panelTop;
-        private Button btnRefresh;
         private Button btnAddTask;
         private SplitContainer splitMain;
         private DataGridView dgvTasks;
