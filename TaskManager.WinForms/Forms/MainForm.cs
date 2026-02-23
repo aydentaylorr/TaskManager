@@ -18,6 +18,8 @@ namespace TaskManager.WinForms.Forms
 
         public async Task LoadTasks()
         {
+            await LoadLookups();
+
             var tasks = await _taskApiService.GetUserTasks(_loggedInUserId);
 
             dgvTasks.Rows.Clear();
