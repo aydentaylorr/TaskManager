@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".mailmap" />
+  </Folder>
   <Project Path="TaskManager.API/TaskManager.API.csproj" />
   <Project Path="TaskManager.Models/TaskManager.Models.csproj" />
   <Project Path="TaskManager.WinForms/TaskManager.WinForms.csproj" />
